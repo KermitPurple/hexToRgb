@@ -42,6 +42,9 @@ class hex_to_rgb_test(unittest.TestCase):
     def test5(self):
         self.assertEqual(hex_to_rgb("#0c2238"), (12, 34, 56))
 
+    def test6(self):
+        self.assertEqual(hex_to_rgb("123456"), (18, 52, 86))
+
 def main():
     unittest.main()
 
