@@ -26,7 +26,9 @@ def hex_to_rgb(hex_str: str) -> tuple:
         hex_str = "".join([ch + ch for ch in hex_str])
     if len(hex_str) == 6:
         seperated_vals = hex_str[:2], hex_str[2:4], hex_str[4:]
-        return tuple([16 * dct[val[0]] + dct[val[1]]for val in seperated_vals])
+        try:
+            return tuple([16 * dct[val[0]] + dct[val[1]]for val in seperated_vals])
+        except: pass
     return (0, 0, 0)
 
 class hex_to_rgb_test(unittest.TestCase):
@@ -59,6 +61,9 @@ class hex_to_rgb_test(unittest.TestCase):
 
     def test10(self):
         self.assertEqual(hex_to_rgb("8888888"), (0, 0, 0))
+
+    def test11(self):
+        self.assertEqual(hex_to_rgb("gggggg"), (0, 0, 0))
 
 def main():
     if len(argv) == 1:
