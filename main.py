@@ -1,4 +1,5 @@
 import unittest
+from sys import argv
 
 def hex_to_rgb(hex_str: str) -> tuple:
     dct = {
@@ -54,7 +55,14 @@ class hex_to_rgb_test(unittest.TestCase):
         self.assertEqual(hex_to_rgb("#aaa"), (170, 170, 170))
 
 def main():
-    unittest.main()
+    if len(argv) == 1:
+        unittest.main()
+    elif len(argv) == 2:
+        if argv[1].startswith("#"):
+            argv[1] = argv[1][1:]
+        print(f"#{argv[1]} = rgb{hex_to_rgb(argv[1])}")
+    else:
+        print("Incorrect Usage")
 
 if __name__ == "__main__":
     main()
