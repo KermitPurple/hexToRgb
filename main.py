@@ -21,10 +21,12 @@ def hex_to_rgb(hex_str: str) -> tuple:
             }
     if hex_str.startswith("#"):
         hex_str = hex_str[1:]
-    if len(hex_str) != 6:
-        return (0, 0, 0)
-    seperated_vals = hex_str[:2], hex_str[2:4], hex_str[4:]
-    return tuple([16 * dct[val[0]] + dct[val[1]]for val in seperated_vals])
+    if len(hex_str) == 3:
+        hex_str = "".join([ch + ch for ch in hex_str])
+    if len(hex_str) == 6:
+        seperated_vals = hex_str[:2], hex_str[2:4], hex_str[4:]
+        return tuple([16 * dct[val[0]] + dct[val[1]]for val in seperated_vals])
+    return (0, 0, 0)
 
 class hex_to_rgb_test(unittest.TestCase):
     def test1(self):
@@ -44,6 +46,12 @@ class hex_to_rgb_test(unittest.TestCase):
 
     def test6(self):
         self.assertEqual(hex_to_rgb("123456"), (18, 52, 86))
+
+    def test7(self):
+        self.assertEqual(hex_to_rgb("#fff"), (255, 255, 255))
+
+    def test8(self):
+        self.assertEqual(hex_to_rgb("#aaa"), (170, 170, 170))
 
 def main():
     unittest.main()
