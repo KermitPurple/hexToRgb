@@ -54,6 +54,12 @@ class hex_to_rgb_test(unittest.TestCase):
     def test8(self):
         self.assertEqual(hex_to_rgb("#aaa"), (170, 170, 170))
 
+    def test9(self):
+        self.assertEqual(hex_to_rgb("1"), (0, 0, 0))
+
+    def test10(self):
+        self.assertEqual(hex_to_rgb("8888888"), (0, 0, 0))
+
 def main():
     if len(argv) == 1:
         unittest.main()
